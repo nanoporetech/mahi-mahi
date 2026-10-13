@@ -1,0 +1,45 @@
+defaults:
+  extension: 150
+  region_merge_distance: 50
+  min_region_coverage: 10
+  min_read_support_per_allele: 4
+  include_extra_trs: true
+  generate_clustering_plots: true
+  generate_motif_plots: true
+  generate_methylation_plots: true
+  methylation_state_confidence_threshold: 0.8
+  motif_plot:
+    sort_mode: length_desc
+    split_by: allele
+    show_strand_sidebar: true
+    show_haplotype_sidebar: true
+    show_allele_sidebar: false
+    show_motif_legend: true
+    show_motif_boundaries: true
+    hide_non_spanning: false
+    hide_unused: false
+    hide_suspicious: false
+    mask_suspicious: true
+  clustering:
+    non_spanning_read_policy: default
+    hap_max_mismatch_fraction: 0.1
+    exclude_haplotag_inconsistent_reads: false
+    plot_first_attempt_density: false
+  very_wide_cluster_minimum_q75_q50_ratio: 2.0
+  strand_bias_run_min_tr_length: 100
+  strand_bias_run_min_long_tr_fraction: 0.2
+  strand_bias_kmer_coverage_threshold: 0.2
+  strand_bias_motif_composition_difference_threshold: 0.25
+  strand_bias_reads_fraction_threshold: 0.25
+  strand_bias_hide_motifs_reads_fraction_threshold: 0.75
+  strand_bias_exclude_suspicious_reads: motifs_only
+  strand_bias_min_remaining_reads_per_allele: 3
+  strand_bias_method: statistical_testing
+  min_flank_length: 75
+  max_flank_length: 1000
+  flank_realignment_check_epsilon: 10
+  repeated_sequence_entropy_threshold: 4.0
+  aba_middle_exact_fraction_threshold: 0.25
+
+profiles:
+  default: {}

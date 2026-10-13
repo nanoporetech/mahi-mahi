@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1120" viewBox="0 0 1500 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Mahi-mahi analysis workflow</title>
+  <desc id="desc">Aligned reads, a reference and a repeat catalogue are processed through motif decomposition, strand-bias detection and allele assignment before composite repeats are split and summarised. Outputs include variant calls, read statistics, tagged alignments and PDF visualisations.</desc>
+  <style>
+    text {font-family:Helvetica,Arial,sans-serif;fill:#334155;font-size:19px}
+    .heading {font-size:25px;font-weight:bold;fill:#0f172a}
+    .label {font-size:21px;font-weight:bold;fill:#0f172a}
+    .card {fill:#fff;stroke:#cbd5e1;stroke-width:2}
+    .step {fill:#f8fafc;stroke:#cbd5e1;stroke-width:2}
+    .number {fill:#fff;text-anchor:middle;font-weight:bold}
+    .arrow {stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+  </style>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker></defs>
+  <rect width="1500" height="1120" fill="#fff"/>
+  <rect x="20" y="20" width="300" height="1070" rx="24" fill="#ecfdf5" stroke="#99e5d1" stroke-width="2"/>
+  <rect x="350" y="20" width="770" height="1070" rx="24" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="1150" y="20" width="330" height="1070" rx="24" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/>
+  <text class="heading" x="45" y="65">Inputs</text>
+  <text class="heading" x="375" y="65">Mahi-mahi</text>
+  <text class="heading" x="1175" y="65">Outputs</text>
+  <rect class="card" x="40" y="110" width="260" height="180" rx="16"/>
+  <text class="label" x="60" y="150">BAM or CRAM</text>
+  <text x="60" y="190">Aligned Nanopore reads</text>
+  <text x="60" y="225">Haplotagging strongly</text><text x="60" y="252">recommended</text>
+  <rect class="card" x="40" y="325" width="260" height="150" rx="16"/>
+  <text class="label" x="60" y="365">Reference FASTA</text>
+  <text x="60" y="405">Matching human</text><text x="60" y="432">reference genome</text>
+  <rect class="card" x="40" y="510" width="260" height="150" rx="16"/>
+  <text class="label" x="60" y="550">Repeat catalogue</text>
+  <text x="60" y="590">Built-in hg38 or hg19</text><text x="60" y="617">or user-supplied BED</text>
+  <rect class="card" x="40" y="695" width="260" height="180" rx="16"/>
+  <text class="label" x="60" y="735">Run settings</text>
+  <text x="60" y="775">Sample, sex, output path</text><text x="60" y="810">Optional locus selection</text><text x="60" y="845">and YAML configuration</text>
+  <rect class="step" x="375" y="105" width="720" height="110" rx="16"/>
+  <circle cx="413" cy="160" r="23" fill="#0f766e"/><text class="number" x="413" y="167">1</text>
+  <text class="label" x="455" y="143">Validate inputs and configuration</text>
+  <text x="455" y="180">Load the reference, catalogue and aligned reads.</text>
+  <path class="arrow" d="M735 218V242"/>
+  <rect class="step" x="375" y="250" width="720" height="110" rx="16"/>
+  <circle cx="413" cy="305" r="23" fill="#0f766e"/><text class="number" x="413" y="312">2</text>
+  <text class="label" x="455" y="288">Extract reads and refine repeat boundaries</text>
+  <text x="455" y="325">Realign the flanks of each repeat-containing subread.</text>
+  <path class="arrow" d="M735 363V387"/>
+  <rect class="step" x="375" y="395" width="720" height="110" rx="16"/>
+  <circle cx="413" cy="450" r="23" fill="#0f766e"/><text class="number" x="413" y="457">3</text>
+  <text class="label" x="455" y="433">Decompose repeat sequences into motifs</text>
+  <text x="455" y="470">Analyse the full locus before splitting composite repeats.</text>
+  <path class="arrow" d="M735 508V532"/>
+  <rect class="step" x="375" y="540" width="720" height="110" rx="16"/>
+  <circle cx="413" cy="595" r="23" fill="#0f766e"/><text class="number" x="413" y="602">4</text>
+  <text class="label" x="455" y="578">Detect strand-associated motif bias</text>
+  <text x="455" y="615">Annotate reads with suspicious motif composition.</text>
+  <path class="arrow" d="M735 653V677"/>
+  <rect class="step" x="375" y="685" width="720" height="110" rx="16"/>
+  <circle cx="413" cy="740" r="23" fill="#0f766e"/><text class="number" x="413" y="747">5</text>
+  <text class="label" x="455" y="723">Assign reads to alleles</text>
+  <text x="455" y="760">Use repeat-length clustering and input haplotags.</text>
+  <path class="arrow" d="M735 798V822"/>
+  <rect class="step" x="375" y="830" width="720" height="110" rx="16"/>
+  <circle cx="413" cy="885" r="23" fill="#0f766e"/><text class="number" x="413" y="892">6</text>
+  <text class="label" x="455" y="868">Split composite repeats and summarise alleles</text>
+  <text x="455" y="905">Report repeat lengths, motif counts and CpG modifications.</text>
+  <text x="395" y="990">Allele assignments are shared across composite-repeat sections.</text>
+  <text x="395" y="1028">CpG modification reporting requires suitable MM and ML tags.</text>
+  <rect class="card" x="1170" y="110" width="290" height="140" rx="16"/>
+  <text class="label" x="1190" y="150">VCF</text><text x="1190" y="190">Per-repeat allele calls</text><text x="1190" y="222">and quality annotations</text>
+  <rect class="card" x="1170" y="280" width="290" height="120" rx="16"/>
+  <text class="label" x="1190" y="320">TSV</text><text x="1190" y="360">Per-read repeat statistics</text>
+  <rect class="card" x="1170" y="430" width="290" height="140" rx="16"/>
+  <text class="label" x="1190" y="470">Tagged BAM</text><text x="1190" y="510">Read annotations</text><text x="1190" y="542">for IGV inspection</text>
+  <rect class="card" x="1170" y="600" width="290" height="140" rx="16"/>
+  <text class="label" x="1190" y="640">Log and configuration</text><text x="1190" y="680">Run provenance</text><text x="1190" y="712">and troubleshooting</text>
+  <rect class="card" x="1170" y="770" width="290" height="200" rx="16"/>
+  <text class="label" x="1190" y="810">PDF visualisations</text><text x="1190" y="850">Motif composition</text><text x="1190" y="882">CpG modifications</text><text x="1190" y="914">Read-length clustering</text><text x="1190" y="946">Enabled by default</text>
+  <text x="45" y="1060">Research use only</text>
+</svg>

@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools >= 77.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mahi_mahi"
+authors = [{name="Oxford Nanopore Technologies plc", email="support@nanoporetech.com"}]
+readme = "README.md"
+requires-python = ">=3.10, <3.13"
+version='1.0.0'
+classifiers=[
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Science/Research',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3',
+    'Topic :: Scientific/Engineering :: Bio-Informatics',
+]
+
+dependencies = [
+    "numpy>=1.25, <3.0",
+    "pysam>=0.22, <1.0",
+    "scikit_learn>=1.3, <2.0",
+    "trviz==1.4.2",
+    "matplotlib>=3.7, <4.0",
+    "pydantic>=2.12, <3.0",
+    "pandas>=2.0, <3.0",
+    "PyYAML>=6.0",
+    "ont-parasail==1.3.4"
+]
+
+[tool.setuptools.package-data]
+"mahi_mahi" = ["data/*"]
+
+[project.scripts]
+mahi-mahi = "mahi_mahi.main:main"
+mahi-mahi-loci-tools = "mahi_mahi.scripts.loci_tools:main"
+
+[project.optional-dependencies]
+dev = ["pre-commit", "ruff", "pyright==1.1.408"]
+test = ["pytest", "pytest-cov", "pytest-xdist"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src/mahi_mahi"]
+# show_contexts = true without --cov-context errors out,
+# so if this happens, check that you aren't accidentally overriding this setting
+# (e.g. with .vscode/settings.json python.testing.pytestArgs)
+addopts = "--cov=mahi_mahi --cov-report=html --cov-branch --cov-context=test --cov-fail-under=80 -m 'not integration and not extensive_clustering_testing and not strand_bias_accuracy and not hg002_regression'"
+markers = [
+    "integration: mark integration tests",
+    "extensive_clustering_testing: mark extensive clustering tests (excluded from default runs)",
+    "strand_bias_accuracy: mark curated strand-bias accuracy tests (excluded from default runs)",
+    "hg002_regression: mark the committed full-loci HG002 regression test (excluded from default runs)",
+]
+
+[tool.coverage.html]
+show_contexts = true
+
+[tool.coverage.run]
+omit = ["src/mahi_mahi/motif_visualization/*"]
+
+[tool.ruff]
+lint.select = ["E", "F", "W", "C90", "I", "T", "B", "C4", "PIE", "ANN", "UP", "Q", "ARG", "SIM", "RUF", "TID251"]
+line-length = 150
+exclude = [
+    "notebooks/"
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ANN", "ARG"]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"misc".msg = "misc/ is developer tooling; src/ and tests/ must not depend on it (the dependency may only go the other way)."
+
+[tool.pyright]
+typeCheckingMode = "standard"
+pythonVersion = "3.10"
+exclude = [
+    "tests/",
+    "notebooks",
+    # test files in misc/tests/ are likewise not type checked:
+    # pytest is not installed in the lint environment
+    "misc/tests/",
+]
+reportUnknownParameterType = "error"
+
+# misc/other scripts import misc/benchmark modules via sys.path at runtime.  Scoped to
+# misc/other so that nothing outside misc/ can import them without pyright complaining.
+[[tool.pyright.executionEnvironments]]
+root = "misc/other"
+extraPaths = ["misc/benchmark"]
+
+[[tool.pyright.executionEnvironments]]
+root = "."
