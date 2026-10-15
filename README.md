@@ -62,30 +62,20 @@ Mahi-mahi is intended for research use on nanopore sequencing data for analysis 
 ## Software requirements
 
 -   Python \>=3.10, \<3.13
-
 -   pip
 
-
 Package dependencies include:
-
--   numpy\>=1.25, \<3.0
-
--   pysam\>=0.22, \<1.0
-
--   scikit_learn\>=1.3, \<2.0
-
--   trviz==1.4.2
-
--   matplotlib\>=3.7, \<4.0
-
--   pydantic\>=2.12, \<3.0
-
--   pandas\>=2.0, \<3.0
-
--   PyYAML\>=6.0
-
--   ont-parasail==1.3.4
-
+```
+numpy>=1.25, <3.0
+pysam>=0.22, <1.0
+scikit_learn>=1.3, <2.0
+trviz==1.4.2
+matplotlib>=3.7, <4.0
+pydantic>=2.12, <3.0
+pandas>=2.0, <3.0
+PyYAML>=6.0
+ont-parasail==1.3.4
+```
 ## Compute resource requirements
 
 Mahi-mahi is intended to run on a standard local workstation or managed compute node. Since only a small set of loci are analysed, system requirements are low. Any system capable of analysing genome sequencing data will be sufficient (multi-core CPU with 16 GB of memory or more). Runtime on a standard system and with standard read depth and loci list should not exceed 10 minutes.
@@ -100,7 +90,12 @@ The software is command-line based and intended to run on a local or managed com
 
 Python and pip must be available before installation. Internet access is required to download the release files and any dependencies not already installed in your environment.
 
-We recommend installing Mahi-mahi in an isolated Python environment to avoid conflicts with other software. For example, on Linux or macOS, using a supported Python version:
+The latest version of Mahi-mahi can be downloaded here: [mahi_mahi-1.0.0](https://github.com/nanoporetech/mahi-mahi/releases/download/v1.0.0/mahi_mahi-1.0.0-py3-none-any.whl) 
+
+Earlier releases are avilable throught the [GitHub releases](https://github.com/nanoporetech/mahi-mahi/releases)
+
+We recommend installing Mahi-mahi in an isolated Python environment to avoid conflicts with other software.
+For example, on Linux or macOS, using a supported Python version:
 
 ``` bash
 python3 -m venv mahi-mahi-env
@@ -108,23 +103,16 @@ source mahi-mahi-env/bin/activate
 python -m pip --version
 ```
 
-The software is distributed together with:
-
--   the wheel file
-
--   this README
-
--   the versioned minimal install-check package, for example `mahi-mahi-hg002-chr18-tcf4-v0.7.1.tar.gz`
-
-Install from the supplied wheel file. Do not rename the wheel file, as pip requires its original filename:
-
+### Install from a downloaded wheel file.
+Do not rename the wheel file, as pip requires its original filename:
 ``` bash
-python -m pip install ./mahi_mahi-<version>-py3-none-any.whl
+pip install ./mahi_mahi-<version>-py3-none-any.whl
 ```
 
-If you are working from a repository checkout instead of a release bundle, install from the repository root:
-
+### Install from source
 ``` bash
+git clone https://github.com/nanoporetech/mahi-mahi.git
+cd mahi-mahi/
 python -m pip install .
 ```
 
@@ -140,7 +128,9 @@ Mahi-mahi includes built-in STR loci BED files that are loaded with `--loci hg38
 
 ## Installation Verification
 
-Download the install-check archive for your version from the [GitHub releases](https://github.com/nanoporetech/mahi-mahi/releases). For example, the archive for v0.7.1 is mahi-mahi-hg002-chr18-tcf4-v0.7.1.tar.gz.
+Download the install-check archive for your version from the [GitHub releases](https://github.com/nanoporetech/mahi-mahi/releases). 
+
+For example, the archive for v1.0.0 is [mahi-mahi-hg002-chr18-tcf4-v1.0.0.tar.gz](https://github.com/nanoporetech/mahi-mahi/releases/download/v1.0.0/).
 
 The install check contains:
 
@@ -157,7 +147,7 @@ The install check contains:
 To run the install check:
 
 ``` bash
-tar -xzf mahi-mahi-hg002-chr18-tcf4-v0.7.1.tar.gz
+tar -xzf mahi-mahi-hg002-chr18-tcf4-v1.0.0.tar.gz
 cd mahi-mahi-hg002-chr18-tcf4
 ./verify-mahi-mahi-installation.sh
 ```
