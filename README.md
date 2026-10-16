@@ -130,7 +130,7 @@ Mahi-mahi includes built-in STR loci BED files that are loaded with `--loci hg38
 
 Download the install-check archive for your version from the [GitHub releases](https://github.com/nanoporetech/mahi-mahi/releases). 
 
-For example, the archive for v1.0.0 is [mahi-mahi-hg002-chr18-tcf4-v1.0.0.tar.gz](https://github.com/nanoporetech/mahi-mahi/releases/download/v1.0.0/).
+For example, the archive for v1.0.0 is [mahi-mahi-hg002-chr18-tcf4-v1.0.0.tar.gz](https://github.com/nanoporetech/mahi-mahi/releases/download/v1.0.0/mahi-mahi-hg002-chr18-tcf4-v1.0.0.tar.gz).
 
 The install check contains:
 
